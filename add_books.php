@@ -27,9 +27,17 @@
             if(mysqli_query($conn, $sql)){
                 $errors['error'] = 'Successfully Added!';
             }else{
-                $errors['error'] = 'Something went wrong while adding a student!';
+                $errors['error'] = 'Something went wrong while adding a book!';
             }
         endif;
+        $title = '';
+        $author = '';
+        $genre = '';
+        $quantity = '';
+        $pub_id = '';
+        $ISBN = '';
+        $price = '';
+        header("Location: bookdash.php");
     endif;
 
     if($errors['flag']==TRUE){
