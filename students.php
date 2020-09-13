@@ -3,6 +3,13 @@ require 'DBconn.php';
 $delete_message = '';
 if (isset($_POST['delete'])) :
     $id_to_delete = $_POST['id_to_delete'];
+    $sql = "DELETE FROM auth WHERE username=(SELECT username FROM student WHERE id ='$id_to_delete')";
+    
+    if (mysqli_query($conn, $sql)) : 
+        //$delete_message = 'STAFF ID: ' . $id_to_delete . ' was deleted from the database';
+    else :
+        //$delete_message = 'Something went wrong while deleting!';
+    endif;
     $sql = "DELETE FROM student WHERE id=$id_to_delete";
 
     if (mysqli_query($conn, $sql)) :
@@ -10,6 +17,7 @@ if (isset($_POST['delete'])) :
     else :
         $delete_message = 'Something went wrong while deleting!';
     endif;
+    
 endif;
 $sql = 'SELECT * FROM student';
 
